@@ -27,6 +27,8 @@
     echo "<h1 style=\"color: red\">{$a}</h1><br>"; //экранирование тегов при помощи бек-слешей, также можно использовать одинарные кавычки
     $a = 'test2';
     //heredoc - синтаксис который не требует использования кавычек
+    echo $a . " changes for GIT";
+
 
     echo <<<php
         <h1 style = "color: red">{$a} with Heredoc</h1><br>
