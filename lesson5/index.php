@@ -73,7 +73,7 @@ if (isset($_POST['load'])) {
     }
     exit;
 }
-$result = mysqli_query($db, "SELECT * FROM pictures ORDER BY views DESC"); //пришлось повторить обращение к БД, по другому не работает, если можно - объясните пожалуйста, почему так происходит.
+$result = mysqli_query($db, "SELECT * FROM pictures ORDER BY views DESC");
 
 ?>
 <!DOCTYPE html>
