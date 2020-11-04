@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+.cell {
+    width: 300px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    margin: 5px;
+}
+.cell img {
+    margin-top: 10px;
+}
