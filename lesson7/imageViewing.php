@@ -3,6 +3,7 @@ session_start();
 $sessionId = session_id();
 
 include 'db.php';
+include 'repeatFromLesson/auth.php';
 
 define("IMG", "images/origin");
 
@@ -85,10 +86,9 @@ if (isset($_GET['addToCart'])) {
     }
 }
 
-$quantityInCart = mysqli_query($db, "SELECT COUNT(*) FROM cart WHERE session_id = '{$sessionId}'");
+$quantityInCart = mysqli_query($db, "SELECT SUM(quantity) FROM cart WHERE session_id = '{$sessionId}'");
 $quantityInCart = mysqli_fetch_array($quantityInCart);
 $quantityInCart = $quantityInCart[0];
-include 'repeatFromLesson/index.php';
 
 ?>
 
@@ -100,7 +100,22 @@ include 'repeatFromLesson/index.php';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="index.php">Вернуться на главную</a><br>
+<? if ($auth): ?>
+    Вход выполнен, <?= $name ?> <a href="?logout">[Выход]</a>
+<? else: ?>
+    Авторизоваться:
+    <form action="" method="post">
+        <input type="text" name="login">
+        <input type="text" name="pass">
+        Запомнить меня <input type="checkbox" name="save">
+        <input type="submit">
+    </form>
+<? endif; ?>
+<a href="index.php" id="linkBack"><img src="images/60577.png" height="15px" width="20px" style="padding-top:2px" alt=""><div>Вернуться на главную</div></a><br>
+<a href="cart.php"><div class="cart">Корзина (<?= $quantityInCart ?>)</div> </a> <br>
+<div class="padeName">
+    <h3>Просмотр товара</h3>
+</div>
 <div>
 <img src="<?= IMG . '/' . $row['name'] ?>" alt='somePicture' height="400px"><br>
 </div>
@@ -111,7 +126,6 @@ include 'repeatFromLesson/index.php';
 <h3>Количество просмотров: <?= $row['views'] ?></h3>
 </div>
 <a href="imageViewing.php?addToCart=<?= $id_image ?>&id_image=<?= $id_image ?>"><div class="button">Добавить в корзину</div></a>
-<a href="cart.php"><div class="button">Корзина (<?= $quantityInCart ?>)</div> </a> <br>
 
 <br>
 <h3>Добавить отзыв:</h3>

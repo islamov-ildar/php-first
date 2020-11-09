@@ -8,6 +8,7 @@ define("TEMPLATES", "templates");
 
 include("library/classSimpleImage.php");
 include 'db.php';
+include 'repeatFromLesson/auth.php';
 
 $images = scandir(IMG);
 $images = array_splice($images, 2);
@@ -93,11 +94,9 @@ if (isset($_GET['addToCart'])) {
     }
 }
 
-$quantityInCart = mysqli_query($db, "SELECT COUNT(*) FROM cart WHERE session_id = '{$sessionId}'");
+$quantityInCart = mysqli_query($db, "SELECT SUM(quantity) FROM cart WHERE session_id = '{$sessionId}'");
 $quantityInCart = mysqli_fetch_array($quantityInCart);
 $quantityInCart = $quantityInCart[0];
-include 'repeatFromLesson/index.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,12 +106,23 @@ include 'repeatFromLesson/index.php';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="nav">
-    <a href="index.php"><h2>Главная</h2></a><br>
-</div>
+<? if ($auth): ?>
+    Вход выполнен, <?= $name ?> <a href="?logout">[Выход]</a>
+<? else: ?>
+    Авторизоваться:
+    <form action="" method="post">
+        <input type="text" name="login">
+        <input type="text" name="pass">
+        Запомнить меня <input type="checkbox" name="save">
+        <input type="submit">
+    </form>
+<? endif; ?>
 <div class="pageName">
-    <h3>Каталог товаров</h3>
+    <h3><a href="index.php">Главная</a><br></h3>
 </div>
+
+<a href="cart.php"><div class="cart">Корзина (<?= $quantityInCart ?>)</div></a>
+
 <div class="container">
 <?php while ($row = mysqli_fetch_assoc($result)): ?>
 
@@ -125,7 +135,6 @@ include 'repeatFromLesson/index.php';
 <?php endwhile; ?>
 </div>
 
-<a href="cart.php"><div class="button">Корзина (<?= $quantityInCart ?>)</div></a>
 
 <!--
 <form action="" enctype="multipart/form-data" method="post">
