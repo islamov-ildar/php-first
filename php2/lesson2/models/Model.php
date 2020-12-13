@@ -36,4 +36,5 @@ abstract class Model implements IModel //родительский класс, и
 
     abstract protected function getTableName() ; // абстрактная функция, не содержащая тело, абстрактные методы должны в конце концов каким-либо наследником быть конкретизированы
 
+
 }
