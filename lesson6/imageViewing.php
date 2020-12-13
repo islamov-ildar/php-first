@@ -104,8 +104,7 @@ if (isset($_GET['message'])) {
     <? foreach ($resultFromFeedBackBD as $feedback): ?>
         <p>
             <b><?= $feedback['name'] ?></b> : <?= $feedback['feedback_text'] ?>
-            <a href="?action=edit&id_feedback=<?= $feedback['id_feedback'] ?>
-            &id_image=<?=$id_image?>">[Редактировать]</a>
+            <a href="?action=edit&id_feedback=<?= $feedback['id_feedback'] ?>&id_image=<?=$id_image?>">[Редактировать]</a>
             <a href="?action=delete&id_feedback=<?= $feedback['id_feedback'] ?>&id_image=<?=$id_image?>">[X]</a><br>
             Добавлено: <?= $feedback['data_time'] ?><br>
         </p>

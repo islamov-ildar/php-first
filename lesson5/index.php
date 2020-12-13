@@ -66,10 +66,10 @@ if (isset($_POST['load'])) {
         $sqlInsert = "INSERT INTO pictures (`name`, `size`) VALUES ('$fileName', '$fileSize')";
         mysqli_query($db, $sqlInsert);
 
-        header("Location: index.php?message=OK");
+        header("Location: exercise1-calculator.php?message=OK");
 
     } else {
-        header("Location: index.php?message=ERROR");
+        header("Location: exercise1-calculator.php?message=ERROR");
     }
     exit;
 }

@@ -42,10 +42,10 @@ if (isset($_POST['load'])) {
         $image->load($path);
         $image->resizeToHeight(150);
         $image->save("images/min/".$fileName);
-        header("Location: index.php?message=OK");
+        header("Location: repeat-from-lesson.php?message=OK");
 
     } else {
-        header("Location: index.php?message=ERROR");
+        header("Location: repeat-from-lesson.php?message=ERROR");
     }
     exit;
 }
