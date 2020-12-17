@@ -28,15 +28,3 @@ $user2->delete();
 
 var_dump($user->getAll());
 
-//var_dump($product);
-//var_dump($user->getOne(1));
-/*
-if (mysqli_connect("127.0.0.1", "root", "root", "shop", "33027")) {
-    echo "Есть подключение к БД";
-};*/
-/*$user = new User($db);
-var_dump($user->getAll());
-$cart = new Cart($db);
-var_dump($cart->insert());
-$order = new Order($db);
-var_dump($order->delete());*/
