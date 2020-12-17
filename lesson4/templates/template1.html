@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<?php echo galleryRender($images, IMG, MINIMG);
+?>
+
+<form action="" enctype="multipart/form-data" method="post">
+    <input type="file" name="myfile">
+    <input type="submit" name="load" value="Загрузить картинку">
+</form>
+
+<?php
+    echo $config[$message];
+?>
+</body>
+</html>
